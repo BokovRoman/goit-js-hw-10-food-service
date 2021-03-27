@@ -4,17 +4,19 @@
 // console.log(localStorage.getItem('my data'));
 // console.log(JSON.parse(localStorage.getItem('my data')));
 
+import refs from'./refs.js';
+
 const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
 };
 
-const switchToggleRef = document.querySelector('#theme-switch-toggle');
-console.log(switchToggleRef);
-const bodyRef=document.querySelector('body');
+// const refs.switchToggleRef = document.querySelector('#theme-switch-toggle');
+console.log(refs.switchToggleRef);
+// const refs.bodyRef=document.querySelector('body');
 
 
-switchToggleRef.addEventListener('change', onChangeSwitchToggleTheme);
+refs.switchToggleRef.addEventListener('change', onChangeSwitchToggleTheme);
 
 populateCheckBoxToggle();
 
@@ -22,7 +24,7 @@ function onChangeSwitchToggleTheme(evt) {
     const toggleValue = evt.target.checked;
     console.log(toggleValue)
 
-    if (switchToggleRef.checked) {
+    if (refs.switchToggleRef.checked) {
         changeClassBody(Theme.DARK, Theme.LIGHT);
         localStorage.setItem('Theme', Theme.DARK);
     }
@@ -33,18 +35,18 @@ function onChangeSwitchToggleTheme(evt) {
 }
 
 function changeClassBody(addClass, removeClass){
-    bodyRef.classList.add(addClass);
-    bodyRef.classList.remove(removeClass);
+    refs.bodyRef.classList.add(addClass);
+    refs.bodyRef.classList.remove(removeClass);
 }
 
 function populateCheckBoxToggle() {
     const saveTheme = localStorage.getItem('Theme');
     if (saveTheme === Theme.DARK) {
-        switchToggleRef.checked = true;
+        refs.switchToggleRef.checked = true;
         changeClassBody(Theme.DARK, Theme.LIGHT);
     }
     else{
-        switchToggleRef.checked = false;
+        refs.switchToggleRef.checked = false;
         changeClassBody(Theme.LIGHT, Theme.DARK);
     }
 }
